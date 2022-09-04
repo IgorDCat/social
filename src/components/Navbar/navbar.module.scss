@@ -1,0 +1,25 @@
+.nav {
+  grid-area: n;
+  background-color: rgb(62, 123, 238);
+  border: 6px solid rgb(62, 123, 238);
+  font-size: 20px;
+  border-radius: 8px;
+  align-self: start;
+
+  & a {
+    color: white;
+    text-decoration: none;
+  }
+
+  & .nav_link {
+    padding: 10px;
+    transition: all .3s;
+  }
+
+  & .nav_link:hover {
+    background-color: rgb(33, 100, 226);
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

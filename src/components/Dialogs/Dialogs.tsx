@@ -9,8 +9,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {rootState} from "../../redux/redux_store";
 import {deleteMessage, sendMessageThunk, setDialogs, setMessagesResponse, startChat} from "../../redux/messages_reducer";
 import userPhoto from '../../assets/images/userPhoto.png'
+import style from "./dialogs.module.scss"
 
-const Dialogs = () => {
+const Dialogs = (props) => {
 
     const dispatch = useDispatch();
 
@@ -18,12 +19,11 @@ const Dialogs = () => {
         dispatch(setDialogs())
     }, []);
 
-    let myId = useSelector((state: rootState) => state.app.id);
-    let messagesData = useSelector((state: rootState) => state.dialogs.messagesData);
-    let dialogsData = useSelector((state: rootState) => state.dialogs.dialogsData);
-    let state = useSelector((state: rootState) => state);
-    let unreadMessages = useSelector((state: rootState) => state.dialogs.unreadMessages);
-    let messagesEndRef = useRef(null);
+    const myId = useSelector((state: rootState) => state.app.id);
+    const messagesData = useSelector((state: rootState) => state.dialogs.messagesData);
+    const dialogsData = useSelector((state: rootState) => state.dialogs.dialogsData);
+    const state = useSelector((state: rootState) => state);
+    const messagesEndRef = useRef(null);
     let [currentUser, setCurrentUser] = useState(0)
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const Dialogs = () => {
         ?.map(elem => <Message key={elem.id} message={elem.body} id={elem.id} senderName={elem.senderName}
                                addedAt={elem.addedAt} viewed={elem.viewed} onDeleteMessage={onDeleteMessage}
                                myId={myId} senderId={elem.senderId} recipientId={elem.recipientId}
-                               unreadMessages={unreadMessages}/>);
+                               unreadMessages={props.unreadMessages}/>);
 
 
     useEffect(() => {
@@ -58,15 +58,15 @@ const Dialogs = () => {
     if (!state.app.id && state.app.initialized === true) return <Navigate to='/login'/>
 
     return (
-        <div className='dialogs'>
-            <div className='dialogs_friends'>
+        <div className={style.dialogs}>
+            <div className={style.dialogs_friends}>
                 {dialogElement}
             </div>
-            <div className='dialogs_messages'>
+            <div className={style.dialogs_messages}>
                 {messageElement}
                 <div ref={messagesEndRef}/>
             </div>
-            <div className="send_message">
+            <div className={style.send_message}>
                 <DialogTextFieldRF messagesData={messagesData} currentUser={currentUser}/>
             </div>
         </div>

@@ -1,0 +1,104 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-auto-rows: 4fr 1fr;
+  background-color: cornflowerblue;
+  padding: 10px;
+  border: 10px solid cornflowerblue;
+  border-radius: 8px;
+  text-decoration: none;
+  grid-area: c;
+  grid-template-areas: 'df dm' 'sm sm';
+  height: 800px;
+
+  &_friends {
+    overflow-y: auto;
+  }
+
+  &_messages {
+    grid-template-columns: 1fr;
+    grid-area: dm;
+    height: 600px;
+    overflow-y: auto;
+  }
+
+  & a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.send_message {
+  grid-area: sm;
+  background-color: rgb(62, 123, 238);
+  color: rgb(254, 254, 255);
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+  height: 100px;
+
+  & textarea {
+    resize: none;
+    width: 90%;
+  }
+}
+
+.dialogImg {
+  width: 50px;
+  border-radius: 100%;
+  grid-area: dialogImg;
+}
+
+.friend_name {
+  grid-area: friend_name;
+}
+
+.friend_info {
+  grid-area: friend_info;
+  font-size: 12px;
+}
+
+.dialog_friend, .dialog_friend_selected {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-auto-rows: 30px 70px;
+  grid-template-areas: 'dialogImg friend_name' 'dialogImg friend_info';
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.dialog_friend_selected {
+  background-color: rgb(41, 106, 229);
+
+  &:hover {
+    background-color: rgb(70, 125, 227);
+  }
+}
+
+.dialog_message {
+  background-color: aliceblue;
+  border: 6px solid aliceblue;
+  border-radius: 8px;
+  width: 80%;
+  height: 50px;
+  margin: 10px 10px 10px 20px;
+  padding: 10px;
+}
+
+.message_title {
+  display: flex;
+  align-content: space-between;
+  justify-content: flex-end;
+
+  & .end {
+    margin-left: auto;
+    color: lightslategray;
+  }
+}
+
+.deleteMessage {
+  margin-left: 10px;
+  font-weight: 500;
+}

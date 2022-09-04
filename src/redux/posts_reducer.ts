@@ -1,10 +1,11 @@
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
 export type postsDataType = {
         id: number | null
         postMessage: string | null
         likesCount: number | null
+        photo?: string
+        mainPhoto?: string
     }
 
 export type initialPostStateType = {
@@ -32,8 +33,9 @@ const posts_reducer = (state = initialState, action): initialPostStateType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {id: 3, postMessage: action.newPostMessage, likesCount: 0};
-            return  {...state,
-                postsData: [newPost, ...state.postsData]};
+            return {
+                ...state, postsData: [newPost, ...state.postsData]
+            };
         }
         default:
             return state;

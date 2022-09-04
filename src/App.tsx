@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import './App.scss';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import {Route, Routes} from "react-router-dom";
 import {UsersComponent} from "./components/Users/Users";
 import LoginPage from "./components/login/Login";
-import Settings from "./components/settings/Settings";
+import Settings from "./components/Settings/Settings";
 import {useDispatch, useSelector} from "react-redux";
 import {initializeAppThunk} from "./redux/app_reducer";
 import Preloader from "./components/Preloader";
@@ -19,10 +19,12 @@ import Friends from "./components/Friends";
 
 export const App = () => {
 
-    let initialized = useSelector((state: rootState) => state.app.initialized);
-    let dialogs = useSelector((state: rootState) => state.dialogs);
-    let state = useSelector((state: rootState) => state);
-    const dispatch = useDispatch()
+    const initialized = useSelector((state: rootState) => state.app.initialized);
+    const dialogs = useSelector((state: rootState) => state.dialogs);
+    const state = useSelector((state: rootState) => state);
+    const unreadMessages = useSelector((state: rootState) => state.dialogs.unreadMessages);
+    const dispatch = useDispatch();
+    const login = useSelector((state: rootState) => state.profile.authData.login);
 
     useEffect(() => {
         dispatch(initializeAppThunk())
@@ -32,12 +34,11 @@ export const App = () => {
     if (initialized === false) return <Preloader/>
     return (
         <div className='app_wrapper'>
-            <Header/>
-            <Navbar dialogs={dialogs}/>
+            <Header login={login}/>
+            <Navbar dialogs={dialogs} unreadMessages={unreadMessages} login={login}/>
             <Routes>
 
-                <Route path='/dialogs/*' element={<Dialogs/>}/>
-
+                <Route path='/dialogs/*' element={<Dialogs unreadMessages={unreadMessages}/>}/>
                 <Route path='/profile/*' element={<Profile/>}/>
                 <Route path='' element={<Profile/>}/>
                 <Route path='/login' element={<LoginPage state={state}/>}/>

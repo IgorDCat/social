@@ -1,8 +1,10 @@
 import * as React from "react";
 import {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {rootState} from "../redux/redux_store";
-import {changeProfileStatus, setProfileStatus} from "../redux/profile_reducer";
+import {rootState} from "../../redux/redux_store";
+import {changeProfileStatus, setProfileStatus} from "../../redux/profile_reducer";
+import style from "./profileStatus.module.scss";
+
 
 export const ProfileStatus = (props) => {
 
@@ -46,18 +48,18 @@ export const ProfileStatus = (props) => {
     }
 
     const statusStyle = () => {
-        if (!props.match) return 'status'
+        if (!props.match) return style.status
     }
 
     const timeOut = () => {
-       if (submitInfo) setTimeout(()=>props.setSubmitInfo(null),5000)
+        if (submitInfo) setTimeout(() => props.setSubmitInfo(null), 5000)
     }
     return (
         <div>
             {!editMode ?
                 <div className={statusStyle()} onClick={() => editStatusToggle('active')}>
-                    <span className='statusSpan'> {statusText ? statusText :
-                        <span className='no_active'>----------</span>} </span>
+                    <span> {statusText ? statusText :
+                        <span className={style.no_active}>----------</span>} </span>
                 </div>
                 :
                 <div>
@@ -71,7 +73,8 @@ export const ProfileStatus = (props) => {
                     </button>
                 </div>
 
-            } <div className='login_error'>{!submitInfo? null : submitInfo }
+            }
+            <div className='login_error'>{!submitInfo ? null : submitInfo}
             </div>
 
         </div>

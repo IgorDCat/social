@@ -25,7 +25,7 @@ type messagesDataType = {
     addedAt: string
     viewed: boolean
 }
-type initialStateType = {
+export type initialStateType = {
     dialogsData: Array<dialogsDataType>
     messagesData: Array<messagesDataType>
     selectedFriend: number

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useSelector} from "react-redux";
 import {rootState} from "../../redux/redux_store";
-
+import style from "./profile.module.scss"
 
 export const ProfileInfo = () => {
     const fullName = useSelector((state: rootState) => state.profile.profilePage.fullName);
@@ -9,8 +9,8 @@ export const ProfileInfo = () => {
     const lookingForAJobDescription = useSelector((state: rootState) => state.profile.profilePage.lookingForAJobDescription);
     const contacts = useSelector((state: rootState) => state.profile.profilePage.contacts);
 
-    return <div className="profile_info">
-        <div id='user_name'>Name: {fullName}</div>
+    return <div className={style.profile_info}>
+        <div id={style.user_name}>Name: {fullName}</div>
         <br/> <br/>
         About me: {aboutMe || ' -'} <br/>
         My professional skills: {lookingForAJobDescription || ' -'} <br/>

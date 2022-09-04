@@ -1,16 +1,16 @@
 import * as React from "react";
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from "react";
 import PostArea from "../Posts/PostArea";
-import PostsContainer from "../Posts/PostsContainer";
 import {Navigate, NavLink, useMatch} from "react-router-dom";
-import {ProfileStatus} from "../ProfileStatus";
+import {ProfileStatus} from "../ProfileStatus/ProfileStatus";
 import mainPhoto from '../../assets/images/user_cat.png';
 import {useDispatch, useSelector} from "react-redux";
 import {setDialogs, startChat} from "../../redux/messages_reducer";
 import {ProfileInfo} from "./Profile_info";
 import {rootState} from "../../redux/redux_store";
 import {sendMainImage, setProfileInfoThunk, setSubmitInfo} from "../../redux/profile_reducer";
-
+import Posts from "../Posts/Posts";
+import style from "./profile.module.scss"
 
 const Profile = () => {
 
@@ -19,7 +19,6 @@ const Profile = () => {
     const app = useSelector((state: rootState) => state.app);
     const postsData = useSelector((state: rootState) => state.posts.postsData);
     const authData = useSelector((state: rootState) => state.profile.authData);
-    const userId = useSelector((state: rootState) => state.profile.profilePage.userId);
 
     const match = useMatch('/profile/:userId');
     let [mainImg, setMainImg] = useState(photo);
@@ -44,8 +43,9 @@ const Profile = () => {
     }
 
     const mainImageStyle = () => {
-        if (!match) return 'thumbs'
-        else return 'avatar'
+        if (!match) return style.thumbs
+        else return style.avatar
+
     }
 
     const startChatRedirect = () => {
@@ -55,30 +55,31 @@ const Profile = () => {
     }
 
     return (
-        <div className='content'>
+        <div className={style.content}>
 
             <div>
                 <ProfileStatus match={match} setSubmitInfo={dispatch(setSubmitInfo)}/>
             </div>
+            <div className={style.profile}>
+                <div className={mainImageStyle()}>
+                    <img
+                        src={!match ? (photo || mainPhoto) : (photo || mainPhoto)} className={mainImageStyle()} alt=''/>
+                    {!match ?
+                        <div className={style.caption}>
+                            <span className={style.title}>Change photo:</span>
+                            <span className={style.info}><input className={style.change_main_img} type={"file"}
+                                                                onChange={(e) => onSendMainImage(e)} accept="image/*"/></span>
+                        </div>
+                        : <NavLink to='/dialogs/'>
+                            <button onClick={() => startChatRedirect()}>Send message</button>
+                        </NavLink>}
+                </div>
 
-            <div className={mainImageStyle()}>
-                <img
-                    src={!match ? (photo || mainPhoto) : (photo || mainPhoto)} className={mainImageStyle()} alt=''/>
-                {!match ?
-                    <div className="caption">
-                        <span className="title">Change photo:</span>
-                        <span className="info"><input className='change_main_img' type={"file"}
-                                                      onChange={(e) => onSendMainImage(e)} accept="image/*"/></span>
-                    </div>
-                    : <NavLink to='/dialogs/'>
-                        <button onClick={() => startChatRedirect()}>Send message</button>
-                    </NavLink>}
+                <ProfileInfo/>
             </div>
+            <div className={style.posts_area}><Posts/></div>
 
-            <ProfileInfo/>
-
-            <PostsContainer/>
-            <PostArea postsData={postsData}/>
+            <PostArea postsData={postsData} photo={photo} mainPhoto={mainPhoto}/>
 
         </div>
     )

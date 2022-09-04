@@ -5,6 +5,7 @@ import {Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {rootState} from "../../redux/redux_store";
 import {changeProfileInfo} from "../../redux/profile_reducer";
+import style from "../login/login.module.scss"
 
 const Settings = (props) => {
     let app = useSelector((state: rootState) => state.app);
@@ -14,17 +15,17 @@ const Settings = (props) => {
     if (!app.id && app.initialized === true) return <Navigate to='/login'/>;
     if (!userId) return <Navigate to='/profile'/>;
 
-
-
     const onSubmit = (formData) => {
         dispatch(changeProfileInfo(formData))
     }
-return (
+
+    return (
         <div>
             <h2>Profile Info</h2>
 
             <div>
-                <ProfileInfoForm onSubmit={onSubmit} state={props.state} initialValues={props.state.profile.profilePage}/>
+                <ProfileInfoForm onSubmit={onSubmit} state={props.state}
+                                 initialValues={props.state.profile.profilePage}/>
             </div>
         </div>
     )
@@ -48,9 +49,9 @@ let ProfileInfoForm = (props) => {
                                                       type='text' Typefield='input' key={key}/></div>
         })}
         </div>
-        <button className='login_form_button' type='submit'>save</button>
-        <span className='login_error'>{props.error ? ' ' + props.error : null}</span>
-        <div className='success'>{props.state.profile.submitInfo ? ' success!' : null}</div>
+        <button className='button' type='submit'>save</button>
+        <span className={style.login_error}>{props.error ? ' ' + props.error : null}</span>
+        <div className={style.success}>{props.state.profile.submitInfo ? ' success!' : null}</div>
     </form>
 }
 

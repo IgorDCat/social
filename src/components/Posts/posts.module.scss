@@ -1,0 +1,54 @@
+
+.post_area {
+  display: grid;
+  background-color: cornflowerblue;
+  border: 10px solid cornflowerblue;
+  border-radius: 8px;
+  grid-area: p-ar;
+}
+
+.posts {
+  background-color: rgb(62, 123, 238);
+  color: rgb(254, 254, 255);
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.post {
+  display: grid;
+  background-color: rgb(126, 167, 243);
+  color: black;
+  padding: 20px 10px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  grid-template-rows: 40px 1fr;
+  grid-template-columns: 70px 1fr;
+  grid-template-areas: 'im tex' 'im lik';
+
+  & img {
+    width: 50px;
+    border-radius: 100%;
+    grid-area: im;
+  }
+}
+
+textarea {
+  resize: none;
+  grid-area: tex;
+  width: 99%;
+  border-radius: 5px;
+}
+
+.like {
+  grid-area: lik;
+}
+
+.like_button {
+  background-color: rgb(62, 123, 238);
+  color: rgb(254, 254, 255);
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+}

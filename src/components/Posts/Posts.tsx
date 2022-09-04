@@ -1,15 +1,18 @@
 import * as React from "react";
 import {ChangeEvent, useState} from "react";
+import {useDispatch} from "react-redux";
+import {addPostActionCreator} from "../../redux/posts_reducer";
+import style from "./posts.module.scss"
 
 
-
-const Posts = (props) => {
+const Posts = () => {
 
     let [text, setText] = useState('');
+    const dispatch = useDispatch()
 
     const addPost = () => {
         let date = new Date();
-        props.addPostAction('-'+date.toLocaleString() +'- '+ text);
+        dispatch(addPostActionCreator('-'+date.toLocaleString() +'- '+ text));
         setText('')
     };
 
@@ -18,11 +21,11 @@ const Posts = (props) => {
     };
 
     return (
-        <div className="posts">
+        <div className={style.posts}>
             <div><textarea onChange={(e) => onPostChange(e)} placeholder='whats new?'
                            value={text}/></div>
             <div>
-                <button onClick={() => addPost()}>Add post</button>
+                <button className='button' onClick={() => addPost()}>Add post</button>
             </div>
         </div>
     )
