@@ -9,7 +9,6 @@ import Settings from "./components/Settings/Settings";
 import {useDispatch, useSelector} from "react-redux";
 import {initializeAppThunk} from "./redux/app_reducer";
 import Preloader from "./components/Preloader";
-import {ChatPage} from "./components/Chat/chatPage";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {rootState} from "./redux/redux_store";
@@ -42,7 +41,6 @@ export const App = () => {
                 <Route path='/profile/*' element={<Profile/>}/>
                 <Route path='' element={<Profile/>}/>
                 <Route path='/login' element={<LoginPage state={state}/>}/>
-                <Route path='/chat' element={<ChatPage/>}/>
                 <Route path='/friends' element={<Friends/>}/>
                 <Route path='/users/*' element={<UsersComponent isShowFriendsActive={false}/>}/>
                 <Route path='/settings' element={<Settings state={state}/>}/>

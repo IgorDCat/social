@@ -30,9 +30,6 @@ const Navbar = (props: propsType) => {
             <NavLink to='/dialogs/'>
                 <div className={style.nav_link}>Messages {props.unreadMessages? '('+props.unreadMessages+')' : null}</div>
             </NavLink>
-            <NavLink to='/chat/'>
-                <div className={style.nav_link}>Chat</div>
-            </NavLink>
             <NavLink to='/friends/'>
                 <div className={style.nav_link}>Friends</div>
             </NavLink>
