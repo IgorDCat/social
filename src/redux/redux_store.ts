@@ -23,8 +23,8 @@ export type appDispatch = typeof store.dispatch
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;   //for develop
 
-let store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));    //for develop
+//let store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));    //for develop
 
-//let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));   //for production
+let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));   //for production
 
 export default store;

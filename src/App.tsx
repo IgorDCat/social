@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import {FC, useEffect} from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import {Route, Routes} from "react-router-dom";
@@ -15,8 +15,11 @@ import {rootState} from "./redux/redux_store";
 import Header from "./components/Header/Header";
 import Friends from "./components/Friends";
 
+interface AppPropsType {
+    id?: number
+}
 
-export const App = () => {
+export const App: FC<AppPropsType> = (props) => {
 
     const initialized = useSelector((state: rootState) => state.app.initialized);
     const dialogs = useSelector((state: rootState) => state.dialogs);
@@ -29,10 +32,9 @@ export const App = () => {
         dispatch(initializeAppThunk())
     }, [])
 
-
-    if (initialized === false) return <Preloader/>
+    if (initialized === false && !props?.id) return <Preloader/>
     return (
-        <div className='app_wrapper'>
+        <div data-testid='app' className='app_wrapper'>
             <Header login={login}/>
             <Navbar dialogs={dialogs} unreadMessages={unreadMessages} login={login}/>
             <Routes>
