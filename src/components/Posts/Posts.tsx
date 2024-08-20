@@ -4,9 +4,7 @@ import {useDispatch} from "react-redux";
 import {addPostActionCreator} from "../../redux/posts_reducer";
 import style from "./posts.module.scss"
 
-
 const Posts = () => {
-
     let [text, setText] = useState('');
     const dispatch = useDispatch()
 
