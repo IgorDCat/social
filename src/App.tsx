@@ -32,6 +32,7 @@ export const App: FC<AppPropsType> = (props) => {
     }, [])
 
     if (initialized === false && !props?.id) return <Preloader/>
+
     return (
         <div data-testid='app' className='app_wrapper'>
             <Header login={login}/>
