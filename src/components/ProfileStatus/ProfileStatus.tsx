@@ -54,6 +54,7 @@ export const ProfileStatus = (props) => {
     const timeOut = () => {
         if (submitInfo) setTimeout(() => props.setSubmitInfo(null), 5000)
     }
+
     return (
         <div>
             {!editMode ?
@@ -76,7 +77,6 @@ export const ProfileStatus = (props) => {
             }
             <div className='login_error'>{!submitInfo ? null : submitInfo}
             </div>
-
         </div>
     )
 }

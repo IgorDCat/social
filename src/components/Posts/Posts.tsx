@@ -22,10 +22,17 @@ const Posts = () => {
 
     return (
         <div className={style.posts}>
-            <div><textarea onChange={(e) => onPostChange(e)} placeholder='whats new?'
-                           value={text}/></div>
             <div>
-                <button className='button' onClick={() => addPost()}>Add post</button>
+                <textarea
+                    onChange={(e) => onPostChange(e)}
+                    placeholder='whats new?'
+                    value={text}
+                />
+            </div>
+            <div>
+                <button className='button' onClick={() => addPost()}>
+                    Add post
+                </button>
             </div>
         </div>
     )

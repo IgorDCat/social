@@ -28,7 +28,6 @@ export const initializeAppThunk = () => (dispatch) => {
 }
 
 const app_reducer = (state = initialState, action): initialAppStateType => {
-
     switch (action.type) {
         case INITIALIZE_APP: {
             return {...state, initialized: true, id: action.id};

@@ -36,22 +36,31 @@ let ProfileInfoForm = (props) => {
     const {handleSubmit} = props
     return <form onSubmit={handleSubmit}>
 
-        <div>About me: <Field name="aboutMe" placeholder='About me' component={Input} type='text' Typefield='input'/>
+        <div>
+            About me: <Field name="aboutMe" placeholder='About me' component={Input} type='text' Typefield='input'/>
         </div>
-        <div><Field name="lookingForAJob" component='input' type='checkbox'/> Looking for a job?</div>
-        <div>My professional skills: <Field name="lookingForAJobDescription" placeholder='My professional skills'
-                                            component={Input} type='text' Typefield='input'/></div>
-        <div>Full name<Field name="fullName" placeholder='Full name' component={Input} type='text' Typefield='input'/>
+        <div>
+            <Field name="lookingForAJob" component='input' type='checkbox'/> Looking for a job?
+        </div>
+        <div>
+            My professional skills: <Field name="lookingForAJobDescription" placeholder='My professional skills'
+                                            component={Input} type='text' Typefield='input'/>
+        </div>
+        <div>
+            Full name <Field name="fullName" placeholder='Full name' component={Input} type='text' Typefield='input'/>
         </div>
 
-        <div>{Object.keys(props.state.profile.profilePage.contacts).map(key => {
-            return <div key={key + '1'}>{key}: <Field name={'contacts.' + key} placeholder={key} component={Input}
-                                                      type='text' Typefield='input' key={key}/></div>
-        })}
+        <div>
+            {Object.keys(props.state.profile.profilePage.contacts).map(key => {
+                return <div key={key + '1'}>{key}: <Field name={'contacts.' + key} placeholder={key} component={Input}
+                                                          type='text' Typefield='input' key={key}/></div>
+            })}
         </div>
         <button className='button' type='submit'>save</button>
         <span className={style.login_error}>{props.error ? ' ' + props.error : null}</span>
-        <div className={style.success}>{props.state.profile.submitInfo ? ' success!' : null}</div>
+        <div className={style.success}>
+            {props.state.profile.submitInfo ? ' success!' : null}
+        </div>
     </form>
 }
 

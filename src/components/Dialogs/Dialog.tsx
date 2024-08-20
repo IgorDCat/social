@@ -19,8 +19,8 @@ const Dialog = (props) => {
             <div className={style.dialogImg}><img src={props.avatar} className={style.dialogImg}/></div>
             <div className={style.friend_name}><NavLink to={path}>{props.name}</NavLink></div>
             <div className={style.friend_info}>Last activity: {props.lastUserActivityDate}<br/>
-            new messages: {props.hasNewMessages? ' yes': ' no'}</div>
-
+                new messages: {props.hasNewMessages? ' yes': ' no'}
+            </div>
         </div>
     )
 }

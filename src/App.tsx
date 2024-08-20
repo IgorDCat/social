@@ -20,7 +20,6 @@ interface AppPropsType {
 }
 
 export const App: FC<AppPropsType> = (props) => {
-
     const initialized = useSelector((state: rootState) => state.app.initialized);
     const dialogs = useSelector((state: rootState) => state.dialogs);
     const state = useSelector((state: rootState) => state);
@@ -38,7 +37,6 @@ export const App: FC<AppPropsType> = (props) => {
             <Header login={login}/>
             <Navbar dialogs={dialogs} unreadMessages={unreadMessages} login={login}/>
             <Routes>
-
                 <Route path='/dialogs/*' element={<Dialogs unreadMessages={unreadMessages}/>}/>
                 <Route path='/profile/*' element={<Profile/>}/>
                 <Route path='' element={<Profile/>}/>
@@ -46,9 +44,7 @@ export const App: FC<AppPropsType> = (props) => {
                 <Route path='/friends' element={<Friends/>}/>
                 <Route path='/users/*' element={<UsersComponent isShowFriendsActive={false}/>}/>
                 <Route path='/settings' element={<Settings state={state}/>}/>
-
             </Routes>
-
         </div>
     );
 }

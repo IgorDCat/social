@@ -12,7 +12,6 @@ import userPhoto from '../../assets/images/userPhoto.png'
 import style from "./dialogs.module.scss"
 
 const Dialogs = (props) => {
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -76,13 +75,15 @@ const Dialogs = (props) => {
 const maxStringLengthCreator = maxStringLength(300);
 
 let DialogTextField = (props) => {
-
     const {handleSubmit} = props;
-    return <form onSubmit={handleSubmit}>
-        <Field name='sendMessageText' placeholder='your message' component={Input} type='text' Typefield='textarea'
-               validate={[maxStringLengthCreator]}/>
-        <button type='submit'>Send message</button>
-    </form>
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <Field name='sendMessageText' placeholder='your message' component={Input} type='text' Typefield='textarea'
+                   validate={[maxStringLengthCreator]}/>
+            <button type='submit'>Send message</button>
+        </form>
+    )
 }
 
 DialogTextField = reduxForm({

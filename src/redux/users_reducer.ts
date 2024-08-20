@@ -1,7 +1,6 @@
 import {api} from "../api/api";
 import {appDispatch} from "./redux_store";
 import {thunkType} from "./profile_reducer";
-import {createBrowserHistory} from "history";
 
 const SET_USERS = 'SET_USERS';
 const FOLLOW = 'FOLLOW';
@@ -10,7 +9,6 @@ const SELECT_PAGE = 'SELECT_PAGE';
 const SET_TOTAL_COUNT_PAGES = 'SET_TOTAL_COUNT_PAGES';
 const TO_SHOW_PRELOADER = 'TO_SHOW_PRELOADER';
 const DISABLE_FOLLOWING_BUTTON_TOGGLE = 'DISABLE_FOLLOWING_BUTTON_TOGGLE';
-
 
 type initialStateType = {
     users: Array<usersObjType>
@@ -42,7 +40,7 @@ let initialState: initialStateType = {
     followingInProgressList: [],
 }
 
-/////////////////////////////////////// types
+// types
 type followUserType = {
     type: typeof FOLLOW, id: number
 }

@@ -4,7 +4,6 @@ import {appDispatch, rootState} from "./redux_store";
 import {ThunkAction} from "redux-thunk";
 import {AnyAction} from "redux";
 
-
 export type initialStateType = {
     profilePage: profilePageType
     authData: authDatatype
@@ -76,7 +75,6 @@ const initialState: initialStateType = {
     captchaURL: null,
     submitInfo: null,
 };
-
 
 const setAuth = (authData: authDatatype) => {
     return {type: 'SET_AUTH', authData: authData}

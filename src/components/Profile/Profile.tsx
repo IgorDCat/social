@@ -13,7 +13,6 @@ import Posts from "../Posts/Posts";
 import style from "./profile.module.scss"
 
 const Profile = () => {
-
     const dispatch = useDispatch();
     const photo = useSelector((state: rootState) => state.profile.profilePage.photos.large);
     const app = useSelector((state: rootState) => state.app);
@@ -56,7 +55,6 @@ const Profile = () => {
 
     return (
         <div className={style.content}>
-
             <div>
                 <ProfileStatus match={match} setSubmitInfo={dispatch(setSubmitInfo)}/>
             </div>
@@ -80,7 +78,6 @@ const Profile = () => {
             <div className={style.posts_area}><Posts/></div>
 
             <PostArea postsData={postsData} photo={photo} mainPhoto={mainPhoto}/>
-
         </div>
     )
 }

@@ -11,26 +11,15 @@ import {Dispatch} from "redux";
 
 
 export const UsersComponent = (props) => {
-
     const dispatch = useDispatch();
     const is_shown_preloader = useSelector((state: rootState) => state.users.is_shown_preloader);
     const selectedPage = useSelector((state: rootState) => state.users.selectedPage);
     const count = useSelector((state: rootState) => state.users.count);
     const totalCount = useSelector((state: rootState) => state.users.totalCount);
-    //let [isShowFriendsActive, setIsShowFriendsActive] = useState(false)
 
    useEffect(() => {
         dispatch(getUsersThunk(selectedPage, count, props.isShowFriendsActive));
     }, [props.isShowFriendsActive])
-
-
-/*    const ShowFriendsCheckbox = () => {
-        const showHideFriends = async () => {
-            if (selectedPage !== 1) await dispatch(onPageSelected(1, count, isShowFriendsActive));
-            setIsShowFriendsActive(prev => !prev)
-        }
-        return <div><input type='checkbox' onClick={() => showHideFriends()}/> show only friends</div>
-    }*/
 
     return (<div>
             {is_shown_preloader ? <Preloader/> : null}
@@ -43,7 +32,6 @@ export const UsersComponent = (props) => {
         </div>
     );
 }
-
 
 type paginatorPropsType = {
     totalCount: number
@@ -84,9 +72,12 @@ export const Paginator: React.FC<paginatorPropsType> = (props) => {
                                 onClick={() => setPortionNumber(prev => prev - 1)}> prev </button>);
     pagesArr.push(' ', buttonNext, ' ... ', totalCountPages);
     pagesArr.unshift(buttonPrev, ' ');
-    return (<div>
-        {pagesArr}
-    </div>)
+
+    return (
+        <div>
+            {pagesArr}
+        </div>
+    )
 }
 
 export const UserElement = () => {
